@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace CommitConf2019
+namespace MultiturnQnABot
 {
     public class Program
     {

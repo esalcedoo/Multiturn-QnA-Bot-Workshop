@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Schema;
 
-namespace CommitConf2019.Bots
+namespace MultiturnQnABot.Bots
 {
     public class Bot : ActivityHandler
     {

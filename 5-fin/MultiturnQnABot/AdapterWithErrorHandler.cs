@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace CommitConf2019
+namespace MultiturnQnABot
 {
     public class AdapterWithErrorHandler : BotFrameworkHttpAdapter
     {
