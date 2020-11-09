@@ -19,7 +19,7 @@ namespace CommitConf2019.Bots
             {
                 if (member.Id != turnContext.Activity.Recipient.Id)
                 {
-                    await turnContext.SendActivityAsync(MessageFactory.Text($"Welcome Commit Conf 2019!"), cancellationToken);
+                    await turnContext.SendActivityAsync(MessageFactory.Text($"Welcome Microsoft 365 Dev Bootcamp!"), cancellationToken);
                 }
             }
         }
