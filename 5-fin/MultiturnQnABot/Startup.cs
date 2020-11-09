@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Bot.Builder;
+using Microsoft.Bot.Builder.AI.QnA;
 using Microsoft.Bot.Builder.Integration.AspNet.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,6 +27,17 @@ namespace MultiturnQnABot
 
             // Create the bot as a transient. In this case the ASP Controller is expecting an IBot.
             services.AddTransient<IBot, Bot>();
+
+            // Add QnA Service
+            services.AddQnAService(setup =>
+            {
+                var qnAMakerEndpoint = Configuration
+                    .GetSection("QnAMakerEndpoint").Get<QnAMakerEndpoint>();
+
+                setup.EndpointKey = qnAMakerEndpoint.EndpointKey;
+                setup.Host = qnAMakerEndpoint.Host;
+                setup.KnowledgeBaseId = qnAMakerEndpoint.KnowledgeBaseId;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,8 +52,10 @@ namespace MultiturnQnABot
                 app.UseHsts();
             }
 
-            app.UseRouting();
-            app.UseEndpoints(endpoints =>
+            app.UseDefaultFiles()
+                .UseStaticFiles()
+                .UseRouting()
+                .UseEndpoints(endpoints =>
             {
                 endpoints.Map("api/messages", async context =>
                 {
